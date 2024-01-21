@@ -12,6 +12,20 @@ const App = () => {
 	const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
 
 	useEffect(() => {
+		bridge.send('VKWebAppSendPayload', {
+			group_id: 214250585, 
+			payload: {
+			}})
+			.then((data) => { 
+			  if (data.result) {
+				// Событие отправлено
+			  }
+			})
+			.catch((error) => {
+			  // Ошибка
+			  console.log(error);
+			});
+			
 		async function fetchData() {
 			const user = await bridge.send('VKWebAppGetUserInfo');
 			setUser(user);

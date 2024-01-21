@@ -1,6 +1,6 @@
-.Persik {
+.ProductCard {
   display: block;
-  width: 30%;
+  width: 100%;
   max-width: 240px;
   margin: 20px auto;
 }
