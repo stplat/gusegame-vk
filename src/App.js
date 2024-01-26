@@ -31,19 +31,36 @@ const App = () => {
 
   useEffect(() => {
     bridge
-      .send("VKWebAppSendPayload", {
-        group_id: 214250585,
-        payload: {},
+      .send("VKWebAppGetAuthToken", {
+        app_id: 51837568,
+        group_id: 216337775,
+        scope: "market",
       })
       .then((data) => {
-        if (data.result) {
-          // Событие отправлено
+        if (data.access_token) {
+          // Ключ доступа сообщества получен
         }
       })
       .catch((error) => {
         // Ошибка
         console.log(error);
       });
+
+    // bridge
+    //   .send("VKWebAppSendPayload", {
+    //     group_id: 216337775,
+    //     payload: {},
+    //   })
+    //   .then((data) => {
+    //     console.log(data);
+    //     if (data.result) {
+    //       // Событие отправлено
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     // Ошибка
+    //     console.log(error);
+    //   });
 
     async function fetchData() {
       const user = await bridge.send("VKWebAppGetUserInfo");
