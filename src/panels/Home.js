@@ -14,68 +14,50 @@ import {
   CardGrid,
   Banner,
   Image,
+  Caption,
 } from "@vkontakte/vkui";
 
 import diablo from "../img/diablo4.jpg";
 
-const Home = ({ id, go, fetchedUser }) => (
+const Home = ({ id, go, fetchData }) => (
   <Panel id={id} style={{ height: 1000 }}>
-    <PanelHeader>Example</PanelHeader>
+    <PanelHeader>История закупок</PanelHeader>
     <Group>
-      <Div>
-        <Title level="2">Каталог игр:</Title>
-      </Div>
       <Banner
         before={<Image size={96} src={diablo} />}
-        header="Diablo 4"
-        subheader="Турция"
-        text="5 990р"
-        actions={<Button>Подробнее</Button>}
+        header={
+          <React.Fragment>
+            <strong>Diablo 4</strong>
+          </React.Fragment>
+        }
+        text={
+          <React.Fragment>
+            <div style={{ padding: 5 }}>
+              <Caption level="1" weight="1" style={{ marginBottom: 6 }}>
+                Номер лота: 00001
+              </Caption>
+              <Caption level="1" weight="1" style={{ marginBottom: 6 }}>
+                Собрано участников: 3/10
+              </Caption>
+              <Caption level="1" weight="1" style={{ marginBottom: 6 }}>
+                Количество товаров: 10
+              </Caption>
+              <Caption level="1" weight="1" style={{ marginBottom: 8 }}>
+                Дата проведения: 03.02.2024
+              </Caption>
+              <Caption level="1" weight="1" style={{ marginBottom: 8 }}>
+                Скидка от лота: 10%
+              </Caption>
+            </div>
+            <strong>
+              Цена за единицу: <strong>5301р</strong> <strike>5890р</strike>
+            </strong>
+          </React.Fragment>
+        }
+        actions={<Button onClick={fetchData}>Участвовать</Button>}
       />
-
-      {/* <CardGrid size="s">
-				<Card>
-					<div><img className="ProductCard" src={diablo} alt="Persik The Cat"/></div>
-				</Card>
-				<Card>
-					<div style={{ paddingBottom: '92%' }} />
-				</Card>
-				<Card>
-					<div style={{ paddingBottom: '92%' }} />
-				</Card>
-			</CardGrid> */}
     </Group>
-    {/* {fetchedUser &&
-		<Group header={<Header mode="secondary">User Data Fetched with VK Bridge</Header>}>
-			<Cell
-				before={fetchedUser.photo_200 ? <Avatar src={fetchedUser.photo_200}/> : null}
-				subtitle={fetchedUser.city && fetchedUser.city.title ? fetchedUser.city.title : ''}
-			>
-				{`${fetchedUser.first_name} ${fetchedUser.last_name}`}
-			</Cell>
-		</Group>}
-
-		<Group header={<Header mode="secondary">Navigation Example</Header>}>
-			<Div>
-				<Button stretched size="l" mode="secondary" onClick={go} data-to="persik">
-					Show me the Persik, please
-				</Button>
-			</Div>
-		</Group> */}
   </Panel>
 );
-
-Home.propTypes = {
-  id: PropTypes.string.isRequired,
-  go: PropTypes.func.isRequired,
-  fetchedUser: PropTypes.shape({
-    photo_200: PropTypes.string,
-    first_name: PropTypes.string,
-    last_name: PropTypes.string,
-    city: PropTypes.shape({
-      title: PropTypes.string,
-    }),
-  }),
-};
 
 export default Home;

@@ -61,14 +61,14 @@ const App = () => {
     //     // Ошибка
     //     console.log(error);
     //   });
-
-    async function fetchData() {
-      const user = await bridge.send("VKWebAppGetUserInfo");
-      setUser(user);
-      setPopout(null);
-    }
-    fetchData();
+    setPopout(null);
   }, []);
+
+  async function fetchData() {
+    console.log("asd");
+    // const user = await bridge.send("VKWebAppGetUserInfo");
+    // setUser(user);
+  }
 
   const go = (e) => {
     setActivePanel(e.currentTarget.dataset.to);
@@ -87,15 +87,23 @@ const App = () => {
               style={{ marginRight: 5 }}
             >
               <Group>
-                <SimpleCell before={<Icon20ListPenOutline />}>
+                <SimpleCell
+                  before={<Icon20ListPenOutline />}
+                  onClick={() => setActivePanel("home")}
+                >
                   История закупок
                 </SimpleCell>
-                <SimpleCell before={<Icon20Add />}>Создать закупку</SimpleCell>
+                <SimpleCell
+                  before={<Icon20Add />}
+                  onClick={() => setActivePanel("persik")}
+                >
+                  Создать закупку
+                </SimpleCell>
               </Group>
             </SplitCol>
             <SplitCol width="100%" maxWidth="calc(100% - 260px)">
               <View activePanel={activePanel}>
-                <Home id="home" fetchedUser={fetchedUser} go={go} />
+                <Home id="home" fetchData={fetchData} go={go} />
                 <Persik id="persik" go={go} />
               </View>
             </SplitCol>
