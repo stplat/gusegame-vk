@@ -33,7 +33,6 @@ const Persik = (props) => (
         actions={<Button>Подробнее</Button>}
       />
     </Div>
-    {/* <img className="ProductCard" src={diablo} alt="Persik The Cat"/> */}
   </Panel>
 );
 
