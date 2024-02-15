@@ -1,4 +1,5 @@
 .header {
     display: flex;
     align-items: center;
+    padding-left: var(--vkui--size_base_padding_horizontal--regular);
 }
