@@ -15,15 +15,11 @@ import {
   Spacing,
 } from "@vkontakte/vkui";
 import "@vkontakte/vkui/dist/vkui.css";
+import "./index.css";
 
 import Home from "./panels/Home/Home";
 import Product from "./panels/Product/Product";
 import Persik from "./panels/Persik";
-import {
-  Icon20Add,
-  Icon20ListPenOutline,
-  Icon28Notifications,
-} from "@vkontakte/icons";
 
 const App = () => {
   const [activePanel, setActivePanel] = useState("home");
