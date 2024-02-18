@@ -1,0 +1,12 @@
+.header_bg {
+    background: linear-gradient(86.94deg, #1E2129 0%, #32363F 100%);
+}
+
+.header_hover:hover {
+    background: linear-gradient(86.94deg, #1E2129 100%, #32363F 200%);
+}
+
+.fixed-offset {
+    height: 70px;
+    width: 100%;
+}
