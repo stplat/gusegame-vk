@@ -1,55 +1,57 @@
-import React, { useState } from "react";
-import { Panel, CardScroll, Card } from "@vkontakte/vkui";
-import { Swiper, SwiperSlide } from "swiper/react";
+import React, { useState, useLayoutEffect } from "react";
+import { Panel, Group, Card } from "@vkontakte/vkui";
+import { register } from "swiper/element/bundle";
 import Header from "../Layout/Header/Header";
-import "./Home.css";
+import ProductSlider from "../../components/ProductSlider/ProductSlider";
 import "swiper/css";
+import "./Home.css";
+
+register();
 
 const Home = ({ id, go }) => {
   const [productId, setProductId] = useState(null);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [slides, setSlides] = useState([]);
+  const [populars, setPopulars] = useState([]);
 
-  const fetchData = async () => {
-    try {
-      const response = await fetch("http://127.0.0.1:8000/api/asd");
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+  useLayoutEffect(() => {
+    (async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:8000/api/main");
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setSlides(data.slides);
+        setPopulars(data.populars);
+      } catch (e) {
+        console.log("Ошибка запроса: " + e);
       }
-      const data = await response.json();
-      console.log(data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  fetchData();
-
-  const clickOnProduct = (e) => {
-    const id = e.currentTarget.dataset.id;
-
-    setProductId(id);
-    go({ panelName: "product", productId: id });
-  };
+    })();
+  }, []);
 
   return (
     <Panel id={id}>
       <Header />
-      <Swiper
-        spaceBetween={50}
-        slidesPerView={3}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
-      >
-        <SwiperSlide>
-          <div
-            class="flex items-center swiper-image rounded-md overflow-hidden relative stsp-box-shadow"
-            style={{ background: `background: url({item.slide_path}) 50% 0;` }}
-          ></div>
-        </SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        ...
-      </Swiper>
+      <div className="myswiper">
+        <swiper-container slides-per-view="1">
+          {slides.map((item, key) => (
+            <swiper-slide key={key}>
+              <div
+                className="flex items-center swiper-image overflow-hidden relative stsp-box-shadow"
+                style={{
+                  height: "250px",
+                  background: `url(${item.slide_path}) center 0`,
+                  backgroundSize: "cover",
+                }}
+              ></div>
+            </swiper-slide>
+          ))}
+        </swiper-container>
+      </div>
+      <div className="p-4 text-2xl">Популярные товары</div>
+      <div className="px-4">
+        <ProductSlider products={populars} />
+      </div>
     </Panel>
   );
 };

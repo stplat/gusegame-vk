@@ -1,0 +1,32 @@
+.item {
+    position: relative;
+    height: 300px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(359.6deg, #32353D 0.35%, rgba(64, 68, 77, 0) 99.65%);
+}
+
+.item-name {
+    position: absolute;
+    z-index: 10;
+    bottom: 0;
+    color: #fff;
+    line-height: 18px;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.item-logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}

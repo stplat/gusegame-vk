@@ -1,3 +1,7 @@
+.header {
+    height: 70px;
+}
+
 .header_bg {
     background: linear-gradient(86.94deg, #1E2129 0%, #32363F 100%);
 }
