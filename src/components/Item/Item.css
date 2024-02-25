@@ -1,0 +1,98 @@
+.item {
+    position: relative;
+    height: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(359.6deg, #32353D 0.35%, rgba(64, 68, 77, 0) 99.65%);
+}
+
+.item-bottom {
+    position: absolute;
+    z-index: 10;
+    bottom: 0;
+    width: 100%;
+}
+
+.item-name {
+    color: #fff;
+    padding: 15px 15px 5px 15px;
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: normal;
+}
+
+.item-sub-name {
+    color: #fff;
+    padding: 0 15px 40px 15px;
+    font-size: 18px;
+    line-height: 18px;
+    font-weight: 300;
+}
+
+.item-prop {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.item-prop-bottom {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 4px;
+    width: 100%;
+    left: 0;
+}
+
+.item-icon {
+    position: relative;
+    z-index: 20;
+    display: inline-block;
+    padding: 8px 10px 10px 9px;
+    border-top-right-radius: 20px;
+}
+
+.item-price {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 500;
+    margin-left: 15px;
+    position: relative;
+}
+
+.item-price::after {
+    content: '₽';
+    padding-left: 2px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.item-price-old {
+    position: absolute;
+    font-size: 16px;
+    text-decoration: line-through;
+    font-weight: 300;
+    top: 0;
+    transform: translateY(-80%);
+}
+
+.item-type {
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.item-currency {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
