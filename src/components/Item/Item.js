@@ -19,7 +19,11 @@ const Item = ({ go, item }) => {
       <div className="item-currency">
         <img src={item.currency.icon} />
       </div>
-      <div className="item-discount">-{item.discount}%</div>
+      {item.discount ? (
+        <div className="item-discount">-{item.discount}%</div>
+      ) : (
+        ""
+      )}
       <div className="item-bottom">
         <div className="item-name">{item.name}</div>
         <div className="item-sub-name">{item.category.name}</div>
