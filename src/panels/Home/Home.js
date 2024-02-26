@@ -1,5 +1,5 @@
 import React, { useState, useLayoutEffect } from "react";
-import { Panel, Group, Card } from "@vkontakte/vkui";
+import { Panel } from "@vkontakte/vkui";
 import { register } from "swiper/element/bundle";
 import Header from "../Layout/Header/Header";
 import ProductSlider from "../../components/ProductSlider/ProductSlider";
@@ -9,7 +9,6 @@ import "./Home.css";
 register();
 
 const Home = ({ id, go }) => {
-  const [productId, setProductId] = useState(null);
   const [slides, setSlides] = useState([]);
   const [populars, setPopulars] = useState([]);
 
@@ -50,7 +49,7 @@ const Home = ({ id, go }) => {
       </div>
       <div className="p-4 text-2xl">Популярные товары</div>
       <div className="px-4">
-        <ProductSlider products={populars} />
+        <ProductSlider products={populars} go={go} />
       </div>
     </Panel>
   );

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Panel, PanelHeader, PanelHeaderBack } from "@vkontakte/vkui";
+import Header from "../Layout/Header/Header";
+import { Panel } from "@vkontakte/vkui";
 
 const Product = ({ id, productId, go }) => {
   const [loading, setLoading] = useState(false);
@@ -28,9 +29,8 @@ const Product = ({ id, productId, go }) => {
 
   return (
     <Panel id={id} centered={true}>
-      <PanelHeader before={<PanelHeaderBack onClick={console.log("asd")} />}>
-        Туалетка {productId}
-      </PanelHeader>
+      <Header />
+      Туалетка {productId}
     </Panel>
   );
 };

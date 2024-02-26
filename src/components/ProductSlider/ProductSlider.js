@@ -1,24 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-import { register } from "swiper/element/bundle";
-import { Group, CardScroll, Card } from "@vkontakte/vkui";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Item from "../Item/Item";
 import "swiper/css";
 import "./ProductSlider.css";
-import flagRussia from "../../img/flag_russia.svg";
 
-const ProductSlider = ({ products = [] }) => {
-  const clickOnProduct = (e) => {
-    const id = e.currentTarget.dataset.id;
-
-    setProductId(id);
-    go({ panelName: "product", productId: id });
-  };
-
-  useEffect(() => {}, []);
-
-  console.log(products);
-
+const ProductSlider = ({ products = [], go }) => {
   return (
     <Swiper
       slidesPerView={1}
@@ -44,7 +30,7 @@ const ProductSlider = ({ products = [] }) => {
     >
       {products.map((item, key) => (
         <SwiperSlide key={key}>
-          <Item item={item}></Item>
+          <Item item={item} go={go}></Item>
         </SwiperSlide>
       ))}
     </Swiper>
