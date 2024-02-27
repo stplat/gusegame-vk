@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Panel } from "@vkontakte/vkui";
 import { register } from "swiper/element/bundle";
 import Header from "../Layout/Header/Header";
@@ -8,29 +8,10 @@ import "./Home.css";
 
 register();
 
-const Home = ({ id, go }) => {
-  const [slides, setSlides] = useState([]);
-  const [populars, setPopulars] = useState([]);
-
-  useLayoutEffect(() => {
-    (async () => {
-      try {
-        const response = await fetch("http://127.0.0.1:8000/api/main");
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        setSlides(data.slides);
-        setPopulars(data.populars);
-      } catch (e) {
-        console.log("Ошибка запроса: " + e);
-      }
-    })();
-  }, []);
-
+const Home = ({ go, slides, populars }) => {
   return (
-    <Panel id={id}>
-      <Header />
+    <div>
+      <Header go={go} />
       <div className="myswiper">
         <swiper-container slides-per-view="1">
           {slides.map((item, key) => (
@@ -51,7 +32,7 @@ const Home = ({ id, go }) => {
       <div className="px-4">
         <ProductSlider products={populars} go={go} />
       </div>
-    </Panel>
+    </div>
   );
 };
 

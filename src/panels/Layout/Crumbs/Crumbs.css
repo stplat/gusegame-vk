@@ -1,0 +1,19 @@
+.crumbs {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    color: #969696;
+    margin: 0 -2px;
+    flex-wrap: wrap;
+}
+
+.crumbs a {
+    color: #E63150;
+}
+
+.crumbs li {
+    margin: 0 2px;
+}

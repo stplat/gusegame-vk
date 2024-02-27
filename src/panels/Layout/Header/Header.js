@@ -1,13 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import {
-  Panel,
-  PanelHeader,
-  FixedLayout,
-  Search,
-  Separator,
-} from "@vkontakte/vkui";
+import { FixedLayout } from "@vkontakte/vkui";
 
 import "./Header.css";
 import logo from "../../../img/logo.svg";
@@ -19,16 +13,13 @@ const navigation = [
   { name: "Patreon", href: "#" },
 ];
 
-const Header = ({ id, go }) => {
-  const [productId, setProductId] = useState(null);
+const Header = ({ go }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const clickOnProduct = (e) => {
-    const id = e.currentTarget.dataset.id;
-
-    setProductId(id);
-    go({ panelName: "product", productId: id });
-  };
+  function goHome(e) {
+    e.preventDefault();
+    go({ panelName: "home" });
+  }
 
   return (
     <Fragment>
@@ -39,7 +30,7 @@ const Header = ({ id, go }) => {
             aria-label="Global"
           >
             <div className="flex shrink-0">
-              <a href="#" className="-m-1.5 p-1.5">
+              <a href="" className="-m-1.5 p-1.5" onClick={goHome}>
                 <span className="sr-only">GuseGame</span>
                 <img
                   className="h-8 w-auto"

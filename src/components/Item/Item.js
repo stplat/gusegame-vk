@@ -17,7 +17,7 @@ const Item = ({ go, item }) => {
     <div className="item" onClick={clickOnProduct} data-id={item.id}>
       <img src={item.image_path} />
       <div className="item-currency">
-        <img src={item.currency.icon} />
+        <img src={item.activate_region.icon} />
       </div>
       {item.discount ? (
         <div className="item-discount">-{item.discount}%</div>
