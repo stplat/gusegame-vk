@@ -1,5 +1,7 @@
 .header {
     height: 70px;
+    position: relative;
+    z-index: 1000;
 }
 
 .header_bg {
@@ -13,4 +15,37 @@
 .fixed-offset {
     height: 70px;
     width: 100%;
+}
+
+.checkbox[type=checkbox]:checked {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 12'%3E%3Cpath stroke='%23E63150' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M1 5.917 5.724 10.5 15 1.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    background-position: 5px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+.checkbox[type=checkbox] {
+    --tw-shadow: 0 0 #0000;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #F1F1F1;
+    background-origin: border-box;
+    border-color: #ccc;
+    border-width: 2px;
+    border-radius: 4px;
+    color: #1c64f2;
+    display: inline-block;
+    flex-shrink: 0;
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    vertical-align: middle;
+    width: 24px;
+    height: 24px;
 }

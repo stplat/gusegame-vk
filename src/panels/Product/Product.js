@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header from "../Layout/Header/Header";
 import Crumbs from "../Layout/Crumbs/Crumbs";
-import { Panel } from "@vkontakte/vkui";
 import "./Product.css";
 
 const Product = ({ product, go }) => {
@@ -11,7 +10,7 @@ const Product = ({ product, go }) => {
       {product && (
         <div className="p-4">
           <div className="mb-4">
-            <Crumbs go={go} current={product.name} />
+            <Crumbs go={go} current={product.name} catalog />
           </div>
           <div className="product">
             <div className="product-image">

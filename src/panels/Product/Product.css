@@ -64,6 +64,7 @@
     display: inline-block;
     font-size: 24px;
     font-weight: 700;
+    line-height: 20px;
 }
 
 .product-price::after {
@@ -74,7 +75,7 @@
 }
 
 .product-price-old {
-    font-size: 18px;
+    font-size: 15px;
     text-decoration: line-through;
     font-weight: 300;
     line-height: 1;
@@ -95,3 +96,20 @@
     padding: 0 20px;
     width: 100%;
 }
+
+@media (max-width: 767px) {
+    .product {
+        padding: 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .product-image,
+    .product-content {
+        width: 100%;
+    }
+
+    .product-image {
+        margin-bottom: 20px;
+    }
+  }

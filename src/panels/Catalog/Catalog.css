@@ -1,0 +1,42 @@
+.filter_bg {
+    background-color: #edeef0;
+}
+
+.catalog {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -5px;
+}
+
+.catalog-item {
+    width: calc(100% / 4 - 10px);
+    margin: 5px;
+}
+
+.catalog-pagination {
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 850px) {
+    .catalog-item {
+        width: calc(100% / 3 - 10px);
+    }
+  }
+
+  @media (max-width: 660px) {
+    .catalog-item {
+        width: calc(100% / 2 - 10px);
+    }
+  }
+
+  @media (max-width: 500px) {
+    .catalog {
+        justify-content: center;
+    }
+
+    .catalog-item {
+        width: 100%;
+        max-width: 260px;
+    }
+  }

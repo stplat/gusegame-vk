@@ -19,7 +19,7 @@ import "./index.css";
 
 import Home from "./panels/Home/Home";
 import Product from "./panels/Product/Product";
-import Persik from "./panels/Persik";
+import Catalog from "./panels/Catalog/Catalog";
 
 const api = "http://127.0.0.1:8000/api/vk";
 
@@ -28,6 +28,8 @@ const App = () => {
   const [slides, setSlides] = useState([]);
   const [populars, setPopulars] = useState([]);
   const [product, setProduct] = useState(null);
+  const [products, setProducts] = useState([]);
+
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -77,9 +79,43 @@ const App = () => {
     }
   }
 
+  async function getProducts({
+    page,
+    distributors = [],
+    games = [],
+    categories = [],
+  }) {
+    try {
+      const response = await fetch(`${api}/products/filter`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify({
+          page: page,
+          limit: 8,
+          distributor_ids: distributors,
+          game_ids: games,
+          category_ids: categories,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      setProducts(data);
+    } catch (e) {
+      console.log("Ошибка запроса: " + e);
+    }
+  }
+
   const go = async ({ panelName, productId = null }) => {
     if (productId) {
       await getProduct(productId);
+    }
+
+    if (panelName === "catalog") {
+      await getProducts({ page: 1 });
     }
 
     setActivePanel(panelName);
@@ -95,12 +131,13 @@ const App = () => {
             </Panel>
             <Panel id="product">
               <Product product={product} go={go} />
-
-              {/* <div>
-                <CellButton onClick={() => setActivePanel("home")}>
-                  Go to panel 3
-                </CellButton>
-              </div> */}
+            </Panel>
+            <Panel id="catalog">
+              <Catalog
+                products={products}
+                go={go}
+                fetchProducts={getProducts}
+              />
             </Panel>
           </View>
         </AppRoot>
