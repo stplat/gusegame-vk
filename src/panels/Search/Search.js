@@ -3,16 +3,14 @@ import Header from "../Layout/Header/Header";
 import Crumbs from "../Layout/Crumbs/Crumbs";
 import { Pagination } from "@vkontakte/vkui";
 import Item from "../../components/Item/Item";
-import "./Catalog.css";
+import "./Search.css";
 
-const Catalog = ({ go, products, fetchProducts }) => {
+const Search = ({ go, products, fetchProducts }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [siblingCount, setSiblingCount] = useState(0);
   const [boundaryCount, setBoundaryCount] = useState(1);
   const [totalPages, setTotalPages] = useState(Math.ceil(products.total / 8));
   const [disabled, setDisabled] = useState(false);
-
-  const [filters, setFilters] = useState(null);
 
   const handleChange = (page) => {
     setCurrentPage(page);
@@ -20,17 +18,16 @@ const Catalog = ({ go, products, fetchProducts }) => {
   };
 
   function changeFilters(params) {
-    setFilters(params);
     fetchProducts(params);
     setTotalPages(Math.ceil(products.total / 8));
   }
 
   return (
     <div>
-      <Header go={go} filter changeFilters={changeFilters} />
+      <Header go={go} changeFilters={changeFilters} />
       <div className="p-4">
         <div className="mb-4">
-          <Crumbs go={go} current="Каталог" />
+          <Crumbs go={go} current="Результаты поиска" />
         </div>
         <div className="catalog">
           {products &&
@@ -55,4 +52,4 @@ const Catalog = ({ go, products, fetchProducts }) => {
   );
 };
 
-export default Catalog;
+export default Search;

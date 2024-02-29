@@ -13,27 +13,8 @@ import logoShort from "../../../img/icons/logo_short.svg";
 
 const navigation = [
   { name: "Каталог", panel: "catalog" },
-  { name: "Доставка и оплата", panel: "#" },
-  { name: "Контакты", panel: "#" },
-];
-
-const distributors = [
-  { name: "Blizzard (battle.net)", value: 1 },
-  { name: "Steam", value: 2 },
-  { name: "PlayStation", value: 3 },
-];
-
-const games = [
-  { name: "Diablo 4", value: 17 },
-  { name: "World of Warcraft", value: 8 },
-  { name: "Starcraft II", value: 13 },
-];
-
-const categories = [
-  { name: "Электронное издание", value: 1 },
-  { name: "Подписка", value: 2 },
-  { name: "Питомец", value: 3 },
-  { name: "Средство передвижения", value: 7 },
+  { name: "Поддержка", panel: "tearms" },
+  { name: "Контакты", panel: "contacts" },
 ];
 
 const Header = ({ go, changeFilters, filter = false }) => {
@@ -43,6 +24,25 @@ const Header = ({ go, changeFilters, filter = false }) => {
     distributors: [],
     games: [],
     categories: [],
+  });
+
+  const [data, setData] = useState({
+    distributors: [
+      { name: "Blizzard (battle.net)", value: 1, checked: false },
+      { name: "Steam", value: 2, checked: false },
+      { name: "PlayStation", value: 3, checked: false },
+    ],
+    games: [
+      { name: "Diablo 4", value: 17, checked: false },
+      { name: "World of Warcraft", value: 8, checked: false },
+      { name: "Starcraft II", value: 13, checked: false },
+    ],
+    categories: [
+      { name: "Электронное издание", value: 1, checked: false },
+      { name: "Подписка", value: 2, checked: false },
+      { name: "Питомец", value: 3, checked: false },
+      { name: "Средство передвижения", value: 7, checked: false },
+    ],
   });
 
   function goMenu(e) {
@@ -63,10 +63,26 @@ const Header = ({ go, changeFilters, filter = false }) => {
         [e.target.name]: updatedList,
       })
     );
+
+    data[e.target.name].map((item) => {
+      return Object.assign(item, {
+        checked: updatedList.includes(String(item.value)),
+      });
+    });
+
+    setData(data);
   }
 
   function applyFilters() {
     changeFilters(checked);
+  }
+
+  function searchProducts(e) {
+    e.preventDefault();
+    const searchHtml = document.querySelector("#search");
+    const searchValue = searchHtml.value;
+
+    changeFilters({ search: searchValue });
   }
 
   return (
@@ -120,13 +136,14 @@ const Header = ({ go, changeFilters, filter = false }) => {
                   </div>
                   <input
                     type="search"
-                    id="default-search"
+                    id="search"
                     className="block w-full p-2 ps-10 text-sm text-gray-900 border rounded-lg bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:border-gray-500  focus:ring-ray-500 focus:outline-none"
                     placeholder="Найти игру, подписку, ключ"
-                    required=""
+                    required
                   />
                   <button
                     type="submit"
+                    onClick={searchProducts}
                     className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-ggpink-800 rounded-e-lg border border-ggpink-800 hover:bg-ggpink-900 focus:ring-1 focus:outline-none focus:ring-ggpink-900"
                   >
                     <svg
@@ -200,7 +217,7 @@ const Header = ({ go, changeFilters, filter = false }) => {
                   <div className="divide-y divide-slate-200">
                     <div className="pb-4">
                       <div className="font-medium mb-3">Поставщик:</div>
-                      {distributors.map((item) => (
+                      {data.distributors.map((item) => (
                         <div
                           className="flex items-center mb-1"
                           key={item.value}
@@ -212,10 +229,11 @@ const Header = ({ go, changeFilters, filter = false }) => {
                             value={item.value}
                             className="w-4 h-4 checkbox"
                             onClick={handleChangeFilters}
+                            defaultChecked={item.checked}
                           />
                           <label
                             htmlFor={"distributors_" + item.value}
-                            className="ms-3 text-sm text-gray-900 dark:text-gray-300"
+                            className="pl-3 text-sm text-gray-900 dark:text-gray-300"
                           >
                             {item.name}
                           </label>
@@ -224,7 +242,7 @@ const Header = ({ go, changeFilters, filter = false }) => {
                     </div>
                     <div className="py-4">
                       <div className="font-medium mb-3">Игра:</div>
-                      {games.map((item) => (
+                      {data.games.map((item) => (
                         <div
                           className="flex items-center mb-1"
                           key={item.value}
@@ -236,10 +254,11 @@ const Header = ({ go, changeFilters, filter = false }) => {
                             value={item.value}
                             className="w-4 h-4 checkbox"
                             onClick={handleChangeFilters}
+                            defaultChecked={item.checked}
                           />
                           <label
                             htmlFor={"games_" + item.value}
-                            className="ms-3 text-sm text-gray-900 dark:text-gray-300"
+                            className="pl-3 text-sm text-gray-900 dark:text-gray-300"
                           >
                             {item.name}
                           </label>
@@ -248,7 +267,7 @@ const Header = ({ go, changeFilters, filter = false }) => {
                     </div>
                     <div className="py-4">
                       <div className="font-medium mb-3">Категория:</div>
-                      {categories.map((item) => (
+                      {data.categories.map((item) => (
                         <div
                           className="flex items-center mb-1"
                           key={item.value}
@@ -260,10 +279,11 @@ const Header = ({ go, changeFilters, filter = false }) => {
                             value={item.value}
                             className="w-4 h-4 checkbox"
                             onClick={handleChangeFilters}
+                            defaultChecked={item.checked}
                           />
                           <label
                             htmlFor={"category_" + item.value}
-                            className="ms-3 text-sm text-gray-900 dark:text-gray-300"
+                            className="pl-3 text-sm text-gray-900 dark:text-gray-300"
                           >
                             {item.name}
                           </label>
