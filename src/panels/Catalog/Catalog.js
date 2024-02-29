@@ -5,11 +5,10 @@ import { Pagination } from "@vkontakte/vkui";
 import Item from "../../components/Item/Item";
 import "./Catalog.css";
 
-const Catalog = ({ go, products, fetchProducts }) => {
+const Catalog = ({ go, products, fetchProducts, totalPages }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [siblingCount, setSiblingCount] = useState(0);
   const [boundaryCount, setBoundaryCount] = useState(1);
-  const [totalPages, setTotalPages] = useState(Math.ceil(products.total / 8));
   const [disabled, setDisabled] = useState(false);
 
   const [filters, setFilters] = useState(null);
@@ -19,10 +18,9 @@ const Catalog = ({ go, products, fetchProducts }) => {
     fetchProducts(Object.assign(filters, { page }));
   };
 
-  function changeFilters(params) {
+  async function changeFilters(params) {
     setFilters(params);
-    fetchProducts(params);
-    setTotalPages(Math.ceil(products.total / 8));
+    await fetchProducts(params);
   }
 
   return (
@@ -30,6 +28,7 @@ const Catalog = ({ go, products, fetchProducts }) => {
       <Header go={go} filter changeFilters={changeFilters} />
       <div className="p-4">
         <div className="mb-4">
+          {totalPages}
           <Crumbs go={go} current="Каталог" />
         </div>
         <div className="catalog">
@@ -45,7 +44,7 @@ const Catalog = ({ go, products, fetchProducts }) => {
             currentPage={currentPage}
             siblingCount={siblingCount}
             boundaryCount={boundaryCount}
-            totalPages={totalPages}
+            totalPages={Math.ceil(products.total / 8)}
             disabled={disabled}
             onChange={handleChange}
           />

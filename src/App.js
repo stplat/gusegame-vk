@@ -25,6 +25,7 @@ const App = () => {
   const [populars, setPopulars] = useState([]);
   const [product, setProduct] = useState(null);
   const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState([]);
 
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
@@ -107,13 +108,18 @@ const App = () => {
     }
   }
 
-  const go = async ({ panelName, productId = null }) => {
+  const go = async ({ panelName, productId = null, search = "" }) => {
     if (productId) {
       await getProduct(productId);
     }
 
     if (panelName === "catalog") {
       await getProducts({ page: 1 });
+    }
+
+    if (panelName === "search") {
+      setSearch(search);
+      await getProducts({ page: 1, search: search });
     }
 
     setActivePanel(panelName);
@@ -144,7 +150,12 @@ const App = () => {
               <Contacts go={go} />
             </Panel>
             <Panel id="search">
-              <Search go={go} />
+              <Search
+                go={go}
+                products={products}
+                search={search}
+                fetchProducts={getProducts}
+              />
             </Panel>
           </View>
         </AppRoot>
