@@ -20,6 +20,7 @@ const navigation = [
 const Header = ({ go, changeFilters, filter = false }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [filterMenuOpen, setFilterMenuOpen] = useState(false);
+  const [search, setSearch] = useState("");
   const [checked, setChecked] = useState({
     distributors: [],
     games: [],
@@ -79,10 +80,7 @@ const Header = ({ go, changeFilters, filter = false }) => {
 
   function searchProducts(e) {
     e.preventDefault();
-    const searchHtml = document.querySelector("[name='search']");
-    const searchValue = searchHtml.value;
-
-    go({ panelName: "search", search: searchValue });
+    go({ panelName: "search", search: search });
   }
 
   return (
@@ -136,10 +134,12 @@ const Header = ({ go, changeFilters, filter = false }) => {
                   </div>
                   <input
                     type="search"
-                    name="search"
+                    name="search_big"
                     className="block w-full p-2 ps-10 text-sm text-gray-900 border rounded-lg bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:border-gray-500  focus:ring-ray-500 focus:outline-none"
                     placeholder="Найти игру, подписку, ключ"
                     required
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
                   />
                   <button
                     type="submit"
@@ -351,13 +351,17 @@ const Header = ({ go, changeFilters, filter = false }) => {
                     </div>
                     <input
                       type="search"
+                      name="search"
                       id="search-dropdown"
                       className="block p-2.5 ps-10 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
                       placeholder="Игра, подписка, ключ"
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
                       required
                     />
                     <button
                       type="submit"
+                      onClick={searchProducts}
                       className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-ggpink-800 rounded-e-lg border border-ggpink-800 hover:bg-ggpink-900 focus:ring-1 focus:outline-none focus:ring-ggpink-900"
                     >
                       <svg

@@ -17,6 +17,7 @@ import Tearms from "./panels/Tearms/Tearms";
 import Contacts from "./panels/Contacts/Contacts";
 import Search from "./panels/Search/Search";
 
+// const api = "http://127.0.0.1:8000/api/vk";
 const api = "https://api.gusegame.ru/api/vk";
 
 const App = () => {
@@ -118,6 +119,7 @@ const App = () => {
     }
 
     if (panelName === "search") {
+      console.log(search);
       setSearch(search);
       await getProducts({ page: 1, search: search });
     }
