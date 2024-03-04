@@ -206,7 +206,7 @@ const Header = ({ go, changeFilters, filter = false }) => {
                   </a>
                   <button
                     type="button"
-                    className="-m-2.5 rounded-md p-2.5 text-black"
+                    className="-m-2.5 rounded-md p-2.5"
                     onClick={() => setFilterMenuOpen(false)}
                   >
                     <span className="sr-only">Закрыть</span>
@@ -233,7 +233,7 @@ const Header = ({ go, changeFilters, filter = false }) => {
                           />
                           <label
                             htmlFor={"distributors_" + item.value}
-                            className="pl-3 text-sm text-gray-900 dark:text-gray-300"
+                            className="pl-3 text-sm"
                           >
                             {item.name}
                           </label>
@@ -258,7 +258,7 @@ const Header = ({ go, changeFilters, filter = false }) => {
                           />
                           <label
                             htmlFor={"games_" + item.value}
-                            className="pl-3 text-sm text-gray-900 dark:text-gray-300"
+                            className="pl-3 text-sm"
                           >
                             {item.name}
                           </label>
@@ -283,7 +283,7 @@ const Header = ({ go, changeFilters, filter = false }) => {
                           />
                           <label
                             htmlFor={"category_" + item.value}
-                            className="pl-3 text-sm text-gray-900 dark:text-gray-300"
+                            className="pl-3 text-sm"
                           >
                             {item.name}
                           </label>
@@ -309,97 +309,98 @@ const Header = ({ go, changeFilters, filter = false }) => {
             onClose={setMobileMenuOpen}
           >
             <div className="fixed inset-0 z-50" />
-            <Dialog.Panel className="filter_bg fixed border dialog-rounded inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-              <div className="flex items-center justify-between">
-                <a
-                  href="#"
-                  className="-m-1.5 p-1.5"
-                  onClick={goMenu}
-                  data-panel="home"
-                >
-                  <span className="sr-only">GuseGame</span>
-                  <img className="h-8 w-auto" src={logoShort} alt="Лого" />
-                </a>
-                <button
-                  type="button"
-                  className="-m-2.5 rounded-md p-2.5 text-gray-700"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <span className="sr-only">Закрыть</span>
-                  <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                </button>
-              </div>
-              <div className="w-full mt-6 md:hidden">
-                <form className="max-w-lg mx-auto">
-                  <div className="relative w-full">
-                    <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                      <svg
-                        className="w-4 h-4 text-gray-400"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 20 20"
+            <Dialog.Panel className="filter_bg fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-xs sm:ring-1 sm:ring-gray-900/10">
+              <div className="light-menu">
+                <div className="flex items-center justify-between">
+                  <a
+                    href="#"
+                    className="-m-1.5 p-1.5"
+                    onClick={goMenu}
+                    data-panel="home"
+                  >
+                    <span className="sr-only">GuseGame</span>
+                    <img className="h-8 w-auto" src={logoShort} alt="Лого" />
+                  </a>
+                  <button
+                    type="button"
+                    className="-m-2.5 rounded-md p-2.5 text-gray-700"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <span className="sr-only">Закрыть</span>
+                    <XMarkIcon className="h-8 w-8" aria-hidden="true" />
+                  </button>
+                </div>
+                <div className="w-full mt-6 md:hidden">
+                  <form className="max-w-lg mx-auto">
+                    <div className="relative w-full">
+                      <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                        <svg
+                          className="w-4 h-4 text-gray-400"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                          ></path>
+                        </svg>
+                      </div>
+                      <input
+                        type="search"
+                        name="search"
+                        id="search-dropdown"
+                        className="block p-2.5 ps-10 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                        placeholder="Игра, подписка, ключ"
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        required
+                      />
+                      <button
+                        type="submit"
+                        onClick={searchProducts}
+                        className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-ggpink-800 rounded-e-lg border border-ggpink-800 hover:bg-ggpink-900 focus:ring-1 focus:outline-none focus:ring-ggpink-900"
                       >
-                        <path
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                        ></path>
-                      </svg>
+                        <svg
+                          className="w-4 h-4"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                          />
+                        </svg>
+                        <span className="sr-only">Поиск</span>
+                      </button>
                     </div>
-                    <input
-                      type="search"
-                      name="search"
-                      id="search-dropdown"
-                      className="block p-2.5 ps-10 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
-                      placeholder="Игра, подписка, ключ"
-                      value={search}
-                      onChange={(e) => setSearch(e.target.value)}
-                      required
-                    />
-                    <button
-                      type="submit"
-                      onClick={searchProducts}
-                      className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-ggpink-800 rounded-e-lg border border-ggpink-800 hover:bg-ggpink-900 focus:ring-1 focus:outline-none focus:ring-ggpink-900"
-                    >
-                      <svg
-                        className="w-4 h-4"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                        />
-                      </svg>
-                      <span className="sr-only">Поиск</span>
-                    </button>
-                  </div>
-                </form>
-              </div>
-              <div className="mt-6 flow-root">
-                <div className="-my-6 divide-y divide-gray-500/10">
-                  <div className="space-y-2 py-6">
-                    {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href=""
-                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                        onClick={goMenu}
-                        data-panel={item.panel}
-                      >
-                        {item.name}
-                      </a>
-                    ))}
-                  </div>
-                  {/* <div className="py-6">
+                  </form>
+                </div>
+                <div className="mt-6 flow-root">
+                  <div className="-my-6 divide-y divide-gray-500/10">
+                    <div className="space-y-2 py-6">
+                      {navigation.map((item) => (
+                        <a
+                          key={item.name}
+                          href=""
+                          className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                          onClick={goMenu}
+                          data-panel={item.panel}
+                        >
+                          {item.name}
+                        </a>
+                      ))}
+                    </div>
+                    {/* <div className="py-6">
                     <a
                       href="#"
                       className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
@@ -407,6 +408,52 @@ const Header = ({ go, changeFilters, filter = false }) => {
                       Личный кабинет
                     </a>
                   </div> */}
+                  </div>
+                </div>
+              </div>
+              <div className="dark-menu">
+                <div className="flex items-center justify-between">
+                  <a href="#" className="-m-1.5 p-1.5">
+                    <span className="sr-only">GuseGame</span>
+                    <img
+                      className="h-8 w-auto"
+                      src={logo}
+                      alt="Gusegame - покупки зарубежом"
+                    />
+                  </a>
+                  <button
+                    type="button"
+                    className="-m-2.5 rounded-md p-2.5 text-white"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <span className="sr-only">Close menu</span>
+                    <XMarkIcon className="h-8 w-8" aria-hidden="true" />
+                  </button>
+                </div>
+                <div className="mt-6 flow-root">
+                  <div className="-my-6 divide-y divide-gray-100/20">
+                    <div className="space-y-2 py-6">
+                      {navigation.map((item) => (
+                        <a
+                          key={item.name}
+                          href=""
+                          className="-mx-3 block rounded-lg px-3 py-2 text-base font-regular leading-7 text-white header_hover"
+                          onClick={goMenu}
+                          data-panel={item.panel}
+                        >
+                          {item.name}
+                        </a>
+                      ))}
+                    </div>
+                    {/* <div className="py-6">
+                      <a
+                        href="#"
+                        className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-regular leading-7 text-white header_hover"
+                      >
+                        Личный кабинет
+                      </a>
+                    </div> */}
+                  </div>
                 </div>
               </div>
             </Dialog.Panel>

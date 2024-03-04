@@ -78,7 +78,13 @@ const Product = ({ product, go }) => {
                 </div>
               </div>
               <div className="product-button mt-5">
-                <button className="button">Заказать</button>
+                <a
+                  className="button flex items-center justify-center"
+                  href="https://vk.me/gusegame.store"
+                  target="_blank"
+                >
+                  Заказать
+                </a>
               </div>
             </div>
           </div>

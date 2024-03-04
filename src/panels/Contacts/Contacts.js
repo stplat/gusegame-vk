@@ -18,7 +18,7 @@ const Contacts = ({ go }) => {
         <div className="mb-4">
           <Crumbs go={go} current="Контакты" />
         </div>
-        <div className="tearms mb-4 py-4 px-6">
+        <div className="tearms mb-4 py-4 md:px-6">
           <Paragraph weight="3">
             ИП Платонов С.О.
             <Spacing size={1} />

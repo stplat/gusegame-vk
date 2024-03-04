@@ -9,7 +9,23 @@
 }
 
 .header_hover:hover {
+    background: linear-gradient(86.94deg, #32363F 100%, #1E2129 200%);
+}
+
+.vkui--vkCom--light .filter_bg {
+    background-color: #fff;
+}
+
+.vkui--vkCom--dark .filter_bg {
     background: linear-gradient(86.94deg, #1E2129 100%, #32363F 200%);
+}
+
+.vkui--vkCom--dark .light-menu {
+    display: none!important;
+}
+
+.vkui--vkCom--light .dark-menu {
+    display: none!important;
 }
 
 .fixed-offset {

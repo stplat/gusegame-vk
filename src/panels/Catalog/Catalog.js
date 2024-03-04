@@ -11,7 +11,7 @@ const Catalog = ({ go, products, fetchProducts, totalPages }) => {
   const [boundaryCount, setBoundaryCount] = useState(1);
   const [disabled, setDisabled] = useState(false);
 
-  const [filters, setFilters] = useState(null);
+  const [filters, setFilters] = useState({});
 
   const handleChange = (page) => {
     setCurrentPage(page);
