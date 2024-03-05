@@ -8,28 +8,24 @@ const ProductSlider = ({ products = [], go }) => {
   return (
     <Swiper
       slidesPerView={1}
-      spaceBetween={10}
+      spaceBetween={5}
       breakpoints={{
-        850: {
+        835: {
           slidesPerView: 4,
-          spaceBetween: 10,
         },
-        660: {
+        630: {
           slidesPerView: 3,
-          spaceBetween: 10,
-        },
-        450: {
-          slidesPerView: 2,
-          spaceBetween: 10,
         },
         400: {
-          slidesPerView: 1.5,
-          spaceBetween: 10,
+          slidesPerView: 2,
         },
       }}
     >
       {products.map((item, key) => (
-        <SwiperSlide key={key}>
+        <SwiperSlide
+          key={key}
+          style={{ display: "flex", justifyContent: "center" }}
+        >
           <Item item={item} go={go}></Item>
         </SwiperSlide>
       ))}
